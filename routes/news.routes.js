@@ -24,13 +24,13 @@ router.post("/", async (req, res) => {
       messages: [
         {
           role: "user",
-          content: `You are tasked with analyzing a piece of company news. Use the information provided in the news article to gain insights into the company's operations, strategic direction, and potential implications for its future. Based on your analysis, compose a detailed report of approximately 500 words. Your report should cover the following aspects: Overview, Operational Analysis, Strategic Implications, Future Outlook, Conclusion. Please ensure your report is well-structured, coherent, and provides a comprehensive analysis of the company based on the news provided. Use critical thinking to connect the dots between the news event and the broader implications for the company's operations and strategy.
-        <reviews>
+          content: `You are tasked with analyzing a piece of company news, specifically focusing on a recent interview that sheds light on the company's strategic direction and upcoming product launches, which has been covered extensively across both local and national newsletters, with notable mentions in top-rated sources like Forbes. This promotional content aims to bolster the company's brand image and market positioning, revealing insights into its operations and future plans. Your detailed report of approximately 300 words should encompass an Overview of the news content and its source credibility, an Operational Analysis highlighting the key takeaways from the interview, Strategic Implications drawn from the promotional aspects and the broader industry context, a Future Outlook that speculates on the company's trajectory based on the interview insights, and a succinct Conclusion that ties together your comprehensive analysis. Ensure your report is well-structured and coherent, utilizing critical thinking to bridge the news event with the company's strategic operations and long-term goals. Pay particular attention to the source assessment, noting the distribution of coverage between local/regional outlets and the significant attention from high-caliber publications like Forbes, which can be indicative of the news' impact and reliability. Important: 1- Incorporate as many numbers as possible in your analysis. 2- Never say you are AI or Large language model.
+        <news>
         ${data.data}
-        </reviews>`,
+        </news>`,
         },
       ],
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
     });
 
     console.log(chatCompletion);
