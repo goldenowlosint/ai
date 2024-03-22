@@ -24,13 +24,13 @@ router.post("/", async (req, res) => {
       messages: [
         {
           role: "user",
-          content: `You are tasked with analyzing a collection of employee reviews for a specific company. Your analysis should delve into various aspects of the company's functionality, including its work environment, management practices, employee satisfaction, and overall operational efficiency. Based on the insights drawn from these reviews, compose a comprehensive 500-word report. This report should not only summarize the key points from the reviews but also provide an evaluative commentary on the company's strengths, areas for improvement, and the overall workplace culture. Ensure that your analysis is balanced, drawing on specific examples from the reviews to support your observations and conclusions.
+          content: `In your task of analyzing a broad spectrum reviews for a designated company, your focus will extend beyond the internal work dynamics to encompass an external customer perspective on the company's products, services, and brand reputation. Your comprehensive 300-word report should include a detailed assessment of customer feedback across various platforms, quantified by the total number of reviews and a breakdown of ratings by percentage. Highlight both the positive and negative sentiments expressed by customers, underpinning each with their specific arguments. Pay close attention to any suggestions or wishes voiced by users for future improvements or offerings. Moreover, gauge the comparative landscape by identifying mentions of competitors, which can offer insights into the company's market positioning. This analysis should weave together internal aspects like management practices, employee satisfaction, and operational efficiency with external customer perceptions, excluding the employment environment. The synthesis of these elements will provide a holistic view of the company's standing from both an internal and external vantage point, thereby offering actionable insights for strategic enhancement. Important: 1- Incorporate as many numbers as possible in your analysis. 2- Never say you are AI or Large language model.
         <reviews>
         ${data.data}
         </reviews>`,
         },
       ],
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
     });
 
     console.log(chatCompletion);
