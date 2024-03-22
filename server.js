@@ -1,11 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const cors = require("cors");
+import express from "express";
+import bodyParser from "body-parser";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import cors from "cors";
+import NewsAPI from "./routes/news.routes.js";
+import ReviewsAPI from "./routes/reviews.routes.js";
+import TrafficAPI from "./routes/traffic.routes.js";
+import SocialAPI from "./routes/social.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+app.use(cors());
 
 // Swagger configuration
 const options = {
@@ -18,21 +25,15 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "https://applications-ai.w5n4tq.easypanel.host/",
       },
     ],
   },
-  apis: ["./server.js"], // Specify the file that contains the API routes
+  apis: ["./server.js"],
 };
-
 const specs = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-// Middleware
-app.use(bodyParser.json());
-app.use(cors());
-
-// Routes
 /**
  * @swagger
  * /api/reviews:
@@ -53,31 +54,16 @@ app.use(cors());
  *       '400':
  *         description: Bad request
  */
-app.post("/api/reviews", (req, res) => {
-  const data = req.body;
-  // Do something with the data, for example, just log it
-  console.log("Received data:", data);
-  res.send("Data received successfully");
-});
+app.use("/api/reviews", ReviewsAPI);
 
-/**
- * @swagger
- * /api/hi:
- *   get:
- *     summary: Endpoint to get data
- *     responses:
- *       '200':
- *         description: Data received successfully
- *       '400':
- *         description: Bad request
- *       '404':
- *         description: Not found
- *       '500':
- *         description: Internal server error
- */
-app.get("/api/hi", (req, res) => {
-  res.send("Data received successfully");
-});
+
+app.use("/api/news", NewsAPI);
+
+
+app.use("/api/traffic", TrafficAPI);
+
+
+app.use("/api/social", SocialAPI);
 
 // Start the server
 app.listen(PORT, () => {
